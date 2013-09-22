@@ -51,7 +51,7 @@ int main(int argc, char** argv) {
 Output
 ------
 
-![Output](http://github.com/orangeduck/ptest/output.png)
+![Output](https://raw.github.com/orangeduck/ptest/master/output.png)
 
 License
 -------
