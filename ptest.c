@@ -132,18 +132,18 @@ static void pt_title_case(char* output, const char* input) {
   unsigned int i;
   for(i = 0; i < strlen(output); i++) {
     
-    if (output[i] == '_') {
+    if (output[i] == '_' || output[i] == ' ') {
       space = true;
       output[i] = ' ';
       continue;
     } 
     
-    if (space) {
-      space = false;
+    if (space && output[i] >= 'a' && output[i] <= 'z') {
       output[i] = output[i] - 32;
       continue;
     }
     
+    space = false;
   }
   
 }
