@@ -129,7 +129,8 @@ static void pt_title_case(char* output, const char* input) {
   
   strcpy(output, input);
   
-  for(unsigned int i = 0; i < strlen(output); i++) {
+  unsigned int i;
+  for(i = 0; i < strlen(output); i++) {
     
     if (output[i] == '_') {
       space = true;
@@ -199,7 +200,7 @@ void pt_add_suite(void (*func)(void)) {
 static clock_t start, end;
 static char current_suite[MAX_NAME];
 
-void pt_run() {
+int pt_run(void) {
   
   printf("    \n");
   printf("    +-------------------------------------------+\n");
@@ -217,7 +218,8 @@ void pt_run() {
   start = clock();
   strcpy(current_suite, "");
   
-  for(int i = 0; i < num_tests; i++) {
+  unsigned int i;
+  for(i = 0; i < num_tests; i++) {
     
     test_t test = tests[i];
     
@@ -294,4 +296,6 @@ void pt_run() {
   double total = (double)(end - start) / CLOCKS_PER_SEC;
   
   printf("      Total Running Time: %0.3fs\n\n", total);
+  
+  if (num_suites_fails > 0) { return 1; } else { return 0; }
 }

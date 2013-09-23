@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -std=gnu99 -Wall -Werror -Wno-unused -g
+CFLAGS = -ansi -Wall -Werror -Wno-unused -g
 
 all: example 
   
