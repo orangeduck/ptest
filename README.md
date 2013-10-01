@@ -33,11 +33,11 @@ PT_SUITE(suite_other) {
   PT_TEST(test_stuff) { 
     PT_ASSERT(1);
     PT_ASSERT(!0);
-    PT_ASSERT("string");
+    PT_ASSERT("string" != NULL);
   }
   
   PT_TEST(test_failure) {
-    PT_ASSERT(false == true);
+    PT_ASSERT(0);
   }  
 }
 
@@ -78,11 +78,11 @@ void test_strings(void) {
 void test_stuff(void) { 
   PT_ASSERT(1);
   PT_ASSERT(!0);
-  PT_ASSERT("string");
+  PT_ASSERT("string" != NULL);
 }
 
 void test_failure(void) {
-  PT_ASSERT(false == true);
+  PT_ASSERT(0);
 }
 
 void suite_basic(void) {

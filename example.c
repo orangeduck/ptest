@@ -22,11 +22,11 @@ PT_SUITE(suite_other) {
   PT_TEST(test_stuff) { 
     PT_ASSERT(1);
     PT_ASSERT(!0);
-    PT_ASSERT("string");
+    PT_ASSERT("string" != NULL);
   }
   
   PT_TEST(test_failure) {
-    PT_ASSERT(false);
+    PT_ASSERT(0);
   }  
 }
 
