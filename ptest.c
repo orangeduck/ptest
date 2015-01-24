@@ -260,6 +260,7 @@ int pt_run(void) {
     strcpy(assert_err_buff, "");
     assert_err_num = 0;
     printf("    | %s ... ", test.name);
+    fflush(stdout);
     
     test.func();
     
