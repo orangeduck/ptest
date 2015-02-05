@@ -109,7 +109,6 @@ void pt_assert_run(int result, const char* expr, const char* func, const char* f
 }
 
 static void ptest_signal(int sig) {
-  
   test_passing = 0;
   
   switch( sig ) {
@@ -123,7 +122,7 @@ static void ptest_signal(int sig) {
   
   pt_color(WHITE); pt_color(RED); printf("Failed! \n\n%s\n", assert_err); pt_color(WHITE);
   
-  printf("    | Stopping Execution.\n");
+  puts("    | Stopping Execution.");
   fflush(stdout);
   exit(0);
   
@@ -132,14 +131,12 @@ static void ptest_signal(int sig) {
 /* Tests */
 
 static void pt_title_case(char* output, const char* input) {
-  
   int space = 1;
   unsigned int i;
   
   strcpy(output, input);
   
   for(i = 0; i < strlen(output); i++) {
-    
     if (output[i] == '_' || output[i] == ' ') {
       space = 1;
       output[i] = ' ';
@@ -171,7 +168,6 @@ static int num_tests_passes = 0;
 static int num_tests_fails  = 0;
 
 void pt_add_test(void (*func)(void), const char* name, const char* suite) {
-  
   test_t test;
 
   if (num_tests == MAX_TESTS) {
@@ -192,7 +188,6 @@ void pt_add_test(void (*func)(void), const char* name, const char* suite) {
   
   tests[num_tests] = test;
   num_tests++;
-  
 }
 
 /* Suites */
@@ -212,18 +207,18 @@ static clock_t start, end;
 static char current_suite[MAX_NAME];
 
 int pt_run(void) {
-  
   unsigned int i;
   double total;
+  test_t test;
 
-  printf("    \n");
-  printf("    +-------------------------------------------+\n");
-  printf("    | ptest          MicroTesting Magic for C   |\n");
-  printf("    |                                           |\n");
-  printf("    | http://github.com/orangeduck/ptest        |\n");
-  printf("    |                                           |\n");
-  printf("    | Daniel Holden (contact@theorangeduck.com) |\n");
-  printf("    +-------------------------------------------+\n");
+  puts("");
+  puts("    +-------------------------------------------+");
+  puts("    | ptest          MicroTesting Magic for C   |");
+  puts("    |                                           |");
+  puts("    | http://github.com/orangeduck/ptest        |");
+  puts("    |                                           |");
+  puts("    | Daniel Holden (contact@theorangeduck.com) |");
+  puts("    +-------------------------------------------+");
   
   signal(SIGFPE,  ptest_signal);
   signal(SIGILL,  ptest_signal);
@@ -233,12 +228,10 @@ int pt_run(void) {
   strcpy(current_suite, "");
   
   for(i = 0; i < num_tests; i++) {
-    
-    test_t test = tests[i];
+    test = tests[i];
     
     /* Check for transition to a new suite */
     if (strcmp(test.suite, current_suite)) {
-      
       /* Don't increment any counter for first entrance */
       if (strcmp(current_suite, "")) {
         if (suite_passing) {
@@ -268,7 +261,7 @@ int pt_run(void) {
     
     if (test_passing) {
       num_tests_passes++;
-      pt_color(GREEN);  printf("Passed! \n"); pt_color(WHITE);
+      pt_color(GREEN);  puts("Passed!"); pt_color(WHITE);
     } else {
       num_tests_fails++;
       pt_color(RED);    printf("Failed! \n\n%s\n", assert_err); pt_color(WHITE);
@@ -284,28 +277,28 @@ int pt_run(void) {
   
   end = clock();
   
-  printf("  \n");
-  printf("  +---------------------------------------------------+\n");
-  printf("  |                      Summary                      |\n");
-  printf("  +---------++------------+-------------+-------------+\n");
+  puts("");
+  puts("  +---------------------------------------------------+");
+  puts("  |                      Summary                      |");
+  puts("  +---------++------------+-------------+-------------+");
   
   printf("  | Suites  ||");
-  pt_color(YELLOW); printf(" Total %4d ",  num_suites);        pt_color(WHITE); printf("|");
-  pt_color(GREEN);  printf(" Passed %4d ", num_suites_passes); pt_color(WHITE); printf("|");
-  pt_color(RED);    printf(" Failed %4d ", num_suites_fails);  pt_color(WHITE); printf("|\n");
+  pt_color(YELLOW); printf(" Total %4d ",  num_suites);        pt_color(WHITE); putchar('|');
+  pt_color(GREEN);  printf(" Passed %4d ", num_suites_passes); pt_color(WHITE); putchar('|');
+  pt_color(RED);    printf(" Failed %4d ", num_suites_fails);  pt_color(WHITE); puts("|");
   
   printf("  | Tests   ||");
-  pt_color(YELLOW); printf(" Total %4d ",  num_tests);         pt_color(WHITE); printf("|");
-  pt_color(GREEN);  printf(" Passed %4d ", num_tests_passes);  pt_color(WHITE); printf("|");
-  pt_color(RED);    printf(" Failed %4d ", num_tests_fails);   pt_color(WHITE); printf("|\n");
+  pt_color(YELLOW); printf(" Total %4d ",  num_tests);         pt_color(WHITE); putchar('|');
+  pt_color(GREEN);  printf(" Passed %4d ", num_tests_passes);  pt_color(WHITE); putchar('|');
+  pt_color(RED);    printf(" Failed %4d ", num_tests_fails);   pt_color(WHITE); puts("|");
   
   printf("  | Asserts ||");
-  pt_color(YELLOW); printf(" Total %4d ",  num_asserts);       pt_color(WHITE); printf("|");
-  pt_color(GREEN);  printf(" Passed %4d ", num_assert_passes); pt_color(WHITE); printf("|");
-  pt_color(RED);    printf(" Failed %4d ", num_assert_fails);  pt_color(WHITE); printf("|\n");
+  pt_color(YELLOW); printf(" Total %4d ",  num_asserts);       pt_color(WHITE); putchar('|');
+  pt_color(GREEN);  printf(" Passed %4d ", num_assert_passes); pt_color(WHITE); putchar('|');
+  pt_color(RED);    printf(" Failed %4d ", num_assert_fails);  pt_color(WHITE); puts("|");
   
-  printf("  +---------++------------+-------------+-------------+\n");
-  printf("  \n");
+  puts("  +---------++------------+-------------+-------------+");
+  puts("");
   
   total = (double)(end - start) / CLOCKS_PER_SEC;
   
