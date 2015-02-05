@@ -1,11 +1,12 @@
-CC = gcc
-CFLAGS = -ansi -Wall -Werror -Wno-unused -g
+STD=-ansi
+CC=gcc
+CFLAGS=$(STD) -Wall -Werror -Wno-unused -g
 
 all: example 
   
 example: example.c ptest.c
 	$(CC) $(CFLAGS) $^ -o $@
-	./$@
+	./$@; [ $$? == 1 ]
   
 clean:
-	rm example.exe
+	find . -regex ".*example\(\.exe\)*" | xargs rm
