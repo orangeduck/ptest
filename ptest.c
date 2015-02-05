@@ -109,6 +109,7 @@ void pt_assert_run(int result, const char* expr, const char* func, const char* f
 }
 
 static void ptest_signal(int sig) {
+
   test_passing = 0;
   
   switch( sig ) {
@@ -168,6 +169,7 @@ static int num_tests_passes = 0;
 static int num_tests_fails  = 0;
 
 void pt_add_test(void (*func)(void), const char* name, const char* suite) {
+
   test_t test;
 
   if (num_tests == MAX_TESTS) {
@@ -207,6 +209,7 @@ static clock_t start, end;
 static char current_suite[MAX_NAME];
 
 int pt_run(void) {
+  
   unsigned int i;
   double total;
   test_t test;
@@ -228,10 +231,12 @@ int pt_run(void) {
   strcpy(current_suite, "");
   
   for(i = 0; i < num_tests; i++) {
+
     test = tests[i];
     
     /* Check for transition to a new suite */
     if (strcmp(test.suite, current_suite)) {
+
       /* Don't increment any counter for first entrance */
       if (strcmp(current_suite, "")) {
         if (suite_passing) {
