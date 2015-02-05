@@ -132,12 +132,14 @@ static void ptest_signal(int sig) {
 /* Tests */
 
 static void pt_title_case(char* output, const char* input) {
+
   int space = 1;
   unsigned int i;
   
   strcpy(output, input);
   
   for(i = 0; i < strlen(output); i++) {
+
     if (output[i] == '_' || output[i] == ' ') {
       space = 1;
       output[i] = ' ';
