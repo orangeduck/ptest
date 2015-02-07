@@ -1,3 +1,5 @@
+#include <stdbool.h>
+
 #include "ptest.h"
 
 void test_maths(void) {

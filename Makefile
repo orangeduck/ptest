@@ -8,5 +8,9 @@ example: example.c ptest.c
 	$(CC) $(CFLAGS) $^ -o $@
 	./$@; [ $$? == 1 ]
   
+example2: example2.c ptest.c
+	$(CC) $(CFLAGS) $^ -o $@
+	./$@; [ $$? == 1 ]
+  
 clean:
 	find . -regex ".*example\(\.exe\)*" | xargs rm
