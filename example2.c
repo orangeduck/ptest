@@ -1,3 +1,5 @@
+#include <stdbool.h>
+
 #include "ptest.h"
 
 void test_maths(void) {
@@ -17,7 +19,7 @@ void test_strings(void) {
 void test_stuff(void) { 
   PT_ASSERT(1);
   PT_ASSERT(!0);
-  PT_ASSERT("string");
+  PT_ASSERT("string" != NULL);
 }
 
 void test_failure(void) {
