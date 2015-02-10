@@ -1,0 +1,9 @@
+{
+  "name": "ptest",
+  "version": "1.0.0",
+  "repo": "orangeduck/ptest",
+  "description": "A DRY Microtesting framework for C",
+  "keywords": ["testing", "microtesting", "DRY", "c", "ptest"],
+  "license": "BSD",
+  "src": ["ptest.c", "ptest.h"]
+}
