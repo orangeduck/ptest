@@ -1,6 +1,6 @@
-STD=-ansi
 CC=gcc
-CFLAGS=$(STD) -Wall -Werror -Wno-unused -g
+STD=-ansi
+CFLAGS= $(STD) -Wall -Werror -Wno-unused -g
 
 all: example example2
   
@@ -13,4 +13,4 @@ example2: example2.c ptest.c
 	./$@; [ $$? == 1 ]
   
 clean:
-	find . -regex ".*example\(2\)*\(\.exe\)*" | xargs rm
+	rm -f example.exe example2.exe example example2
